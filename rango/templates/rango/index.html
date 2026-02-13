@@ -6,7 +6,7 @@
 
 {% block body_block %}
     <h1>Rango says...</h1>
-
+  <p>Visits: {{ visits }}</p>
     <h2>Top Categories</h2>
     {% if categories %}
         <ul>
@@ -27,6 +27,7 @@
             <li>
                 <a href="{% url 'rango:goto' %}?page_id={{ page.id }}">{{ page.title }}</a>
             </li>
+        
         {% endfor %}
         </ul>
     {% else %}
