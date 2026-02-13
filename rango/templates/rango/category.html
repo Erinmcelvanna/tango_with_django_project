@@ -17,13 +17,16 @@
                         <a href="{% url 'rango:goto' %}?page_id={{ page.id }}">
                             {{ page.title }}
                         </a>
+
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
             <strong>No pages currently in this category.</strong>
         {% endif %}
-
+ <p>
+    <a href="{% url 'rango:add_page' category.slug %}">Add Page</a>
+</p>
     {% else %}
         <strong>The specified category does not exist.</strong>
     {% endif %}
