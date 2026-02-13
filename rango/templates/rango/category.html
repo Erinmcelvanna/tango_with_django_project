@@ -7,13 +7,16 @@
     {% if category %}
         <h1>{{ category.name }}</h1>
 
+        <p>Views: {{ category.views }}</p>
+        <p>Likes: {{ category.likes }}</p>
+
         {% if pages %}
             <ul>
                 {% for page in pages %}
                     <li>
                         <a href="{% url 'rango:goto' %}?page_id={{ page.id }}">
-    {{ page.title }}
-    </a>
+                            {{ page.title }}
+                        </a>
                     </li>
                 {% endfor %}
             </ul>
@@ -26,3 +29,4 @@
     {% endif %}
 </body>
 </html>
+
