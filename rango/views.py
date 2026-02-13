@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from rango.models import Category, Page
+from django.shortcuts import redirect
+from django.http import HttpResponse
 
 def index(request):
     category_list = Category.objects.order_by("-likes")[:5]
@@ -23,3 +25,22 @@ def show_category(request, category_name_slug):
 
     return render(request, 'rango/category.html', context=context_dict)
 
+def goto(request):
+    page_id = None
+    url = ''
+
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+            try:
+                page = Page.objects.get(id=page_id)
+                page.views = page.views + 1
+                page.save()
+                url = page.url
+            except:
+                pass
+
+    if url:
+        return redirect(url)
+    else:
+        return redirect('/rango/')
